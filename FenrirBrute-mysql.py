@@ -34,7 +34,6 @@ def help():
 	-p <port>		Porta alvo, padrao 3306
 	-u <user>		Usuario
 	-s <pass list>		Wordlist de senhas
-	-b			Habilita senhas em branco
 	-h			Exibe esta ajuda
 	-v			Ativa o modo verbose e exibe todas as tentativas
 """)
@@ -109,7 +108,7 @@ def main(argv):
 	usr = ''
 	pwd = ''
 	lpass = 0
-	branco = 0
+	branco = 1
 	prt = 3306
 
 	try:
@@ -123,8 +122,6 @@ def main(argv):
 			help()
 		elif opt == '-v':
 			verbose = 1
-		elif opt == '-b':
-			branco = 1
 		elif opt == '-a':
 			hst = arg
 		elif opt == '-p':
