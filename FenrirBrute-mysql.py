@@ -55,6 +55,7 @@ def test(hst,prt,usr):
 
 
 def brute(hst,prt,usr,pwd,verbose,branco):
+	fnd = []
 	if branco == 1:
 		try:
 			db = mysql.connect(
@@ -71,6 +72,7 @@ def brute(hst,prt,usr,pwd,verbose,branco):
 			databases = cursor.fetchall()
 			for db in databases:
 				print ('	',db)
+			fnd.append(1)
 			sys.exit()
 		except mysql.errors.ProgrammingError:
 			if verbose == 1:
@@ -93,10 +95,13 @@ def brute(hst,prt,usr,pwd,verbose,branco):
 				databases = cursor.fetchall()
 				for database in databases:
 					print ('	',database)
+				fnd.append(1)
 				sys.exit()
 			except mysql.errors.ProgrammingError:
 				if verbose == 1:
 					print ('	Tentando --> %s:%s'%(usr,p))
+	if len(fnd) == 0:
+		print ('\n	NENHUMA SENHA ENCONRADA.')
 
 def main(argv):
 	if len(sys.argv) < 4:
